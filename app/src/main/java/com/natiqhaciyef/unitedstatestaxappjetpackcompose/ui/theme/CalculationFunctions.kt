@@ -25,4 +25,5 @@ fun searchState(state: String): UnitedState {
 fun formatCustomer(input: String): String =
     if (input.isNotEmpty()) "%.2f".format(input.toDouble()) else "0.00"
 
-fun incomeTaxCalculator(mainInput: String, fee: Double): String = "${mainInput.toDouble() - ((mainInput.toDouble() * fee) / 100)}"
+fun incomeTaxCalculator(mainInput: String, fee: Double) =
+    "${mainInput.toDouble() - ((mainInput.toDouble() * fee) / 100)}"
