@@ -1,6 +1,5 @@
-package com.natiqhaciyef.unitedstatestaxappjetpackcompose.ui.theme
+package com.natiqhaciyef.unitedstatestaxappjetpackcompose
 
-import com.natiqhaciyef.unitedstatestaxappjetpackcompose.R
 import com.natiqhaciyef.unitedstatestaxappjetpackcompose.data.items.StatesList
 import com.natiqhaciyef.unitedstatestaxappjetpackcompose.data.model.UnitedState
 
@@ -27,3 +26,6 @@ fun formatCustomer(input: String): String =
 
 fun incomeTaxCalculator(mainInput: String, fee: Double) =
     "${mainInput.toDouble() - ((mainInput.toDouble() * fee) / 100)}"
+
+fun saleTaxCalculator(mainInput: String, fee: Double) =
+    "${mainInput.toDouble() + ((mainInput.toDouble() * fee) / 100)}"

@@ -38,9 +38,9 @@ fun CustomOutlinedTextField(
         label = { Text("Insert budget") },
         placeholder = { Text("0.00") },
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            backgroundColor = Color.White,
+//            backgroundColor = Color.White,
             textColor = Color.Black,
-            focusedBorderColor = Color(0xffa7d6ff)
+            focusedBorderColor = MaterialTheme.colors.onError
         ),
         singleLine = true,
         leadingIcon = {
@@ -54,6 +54,7 @@ fun CustomOutlinedTextField(
     )
 }
 
+
 @Composable
 fun CustomText(
     text: String, modifier: Modifier,
@@ -65,6 +66,7 @@ fun CustomText(
         modifier = modifier,
         textAlign = textAlign,
         style = MaterialTheme.typography.h4,
+        color = Color.Black,
         fontWeight = fontWeight,
         fontSize = fontSize.sp
     )
@@ -76,6 +78,7 @@ fun CustomBillText(text: String, modifier: Modifier, fontSize: Int, fontWeight: 
         text = "$ $text",
         modifier = modifier,
         style = MaterialTheme.typography.h4,
+        color = Color.Black,
         textAlign = TextAlign.Center,
         fontWeight = fontWeight,
         fontSize = fontSize.sp
@@ -94,7 +97,7 @@ fun CustomDropDownMenu(
     ExposedDropdownMenuBox(modifier = Modifier
         .fillMaxWidth()
         .padding(10.dp)
-        .border(1.dp, Color(0xffa7d6ff), shape = RoundedCornerShape(10.dp)),
+        .border(1.dp, MaterialTheme.colors.onError, shape = RoundedCornerShape(10.dp)),
         expanded = expanded, onExpandedChange = {
             expanded = !expanded
         }) {
@@ -105,12 +108,12 @@ fun CustomDropDownMenu(
             value = selectedOption.value,
             onValueChange = { },
             readOnly = true,
-            label = { Text(text = "Categories") },
+            label = { Text(text = "Categories", color = Color.Gray) },
             trailingIcon = {
                 ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
             },
             colors = ExposedDropdownMenuDefaults.textFieldColors(
-                backgroundColor = Color.White,
+//                backgroundColor = Color.White,
                 textColor = Color.Black
             )
         )
@@ -126,7 +129,8 @@ fun CustomDropDownMenu(
                         expanded = false
                     }) {
                     Text(
-                        text = option
+                        text = option,
+                        color = Color.Black
                     )
                 }
             }
@@ -141,9 +145,11 @@ fun CustomButton(modifier: Modifier, onClickAction: () -> Unit) {
         modifier = modifier,
         onClick = onClickAction,
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = Color(0xffa7d6ff)
+            backgroundColor = MaterialTheme.colors.onError
         )
     ) {
-        Text(text = "Calculate", color = Color.Black, fontSize = 17.sp)
+        Text(text = "Calculate",
+            color = Color.Black,
+            fontSize = 17.sp)
     }
 }

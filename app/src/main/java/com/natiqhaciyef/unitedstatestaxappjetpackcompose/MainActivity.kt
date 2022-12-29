@@ -1,6 +1,7 @@
 package com.natiqhaciyef.unitedstatestaxappjetpackcompose
 
 import android.os.Bundle
+import android.widget.Space
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -16,16 +17,13 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.toLowerCase
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.natiqhaciyef.unitedstatestaxappjetpackcompose.data.items.StatesList
 import com.natiqhaciyef.unitedstatestaxappjetpackcompose.data.items.StatesNameList
 import com.natiqhaciyef.unitedstatestaxappjetpackcompose.data.model.UnitedState
 import com.natiqhaciyef.unitedstatestaxappjetpackcompose.ui.theme.*
@@ -88,9 +86,9 @@ fun TopView(input: String) {
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(0.2f)
-                .padding(20.dp)
+                .padding(20.dp, 20.dp,20.dp,15.dp)
                 .clip(RoundedCornerShape(17.dp)),
-            color = Color(0xffa7d6ff)
+            color = MaterialTheme.colors.onError
         ) {
             Column(
                 verticalArrangement = Arrangement.Center,
@@ -136,16 +134,17 @@ fun MainBody(
         input.trim().isNotEmpty()
     }
 
+    val isChecked = remember { mutableStateOf(false) }
     val keyboardController = LocalSoftwareKeyboardController.current
 
     Box(
         modifier = Modifier
-            .padding(0.dp, 30.dp, 0.dp, 0.dp)
+            .padding(0.dp, 0.dp, 0.dp, 0.dp)
     ) {
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(350.dp)
+                .height(400.dp)
                 .padding(15.dp)
                 .border(width = 1.dp, color = Color.LightGray, shape = RoundedCornerShape(10.dp))
                 .background(Color.White)
@@ -191,17 +190,39 @@ fun MainBody(
                     fontWeight = FontWeight.Bold
                 )
 
+                CustomSwitch(isChecked = isChecked)
+
                 CustomButton(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(90.dp)
-                        .padding(30.dp, 35.dp, 30.dp, 0.dp)
+                        .height(85.dp)
+                        .padding(30.dp, 15.dp, 30.dp, 15.dp)
                         .clip(RoundedCornerShape(12.dp))
                 ) {
-                    mainInput.value = incomeTaxCalculator(mainInput.value, state.incomeTax)
+                    if (isChecked.value)
+                        mainInput.value = saleTaxCalculator(mainInput.value, state.taxPercent)
+                    else
+                        mainInput.value = incomeTaxCalculator(mainInput.value, state.incomeTax)
                 }
             }
         }
+    }
+}
+
+@Composable
+fun CustomSwitch(isChecked: MutableState<Boolean>) {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.padding(10.dp)
+    ) {
+        Text(text = "Income tax",
+            modifier = Modifier.padding(0.dp,0.dp,15.dp,0.dp))
+        Switch(checked = isChecked.value, onCheckedChange = {
+            isChecked.value = !isChecked.value
+        })
+        Text(text = "Buy product tax",
+        modifier = Modifier.padding(15.dp,0.dp,0.dp,0.dp))
     }
 }
 
