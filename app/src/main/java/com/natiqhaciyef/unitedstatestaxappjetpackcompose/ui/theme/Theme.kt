@@ -1,25 +1,26 @@
 package com.natiqhaciyef.unitedstatestaxappjetpackcompose.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import com.natiqhaciyef.unitedstatestaxappjetpackcompose.util.CustomText
 
 private val DarkColorPalette = darkColors(
     primary = Purple200,
     primaryVariant = Purple700,
-    secondary = Teal200,
+    secondary = Color.White,
     onError = Color(0xFFFB8C00)
 )
 
 private val LightColorPalette = lightColors(
     primary = Purple500,
     primaryVariant = Purple700,
-    secondary = Teal200,
+    secondary = Color.Black,
     onError = Color(0xFFFFDC5E)
-
 
 
     /* Other default colors to override
@@ -39,6 +40,7 @@ fun UnitedStatesTaxAppJetpackComposeTheme(
 ) {
     val colors = if (darkTheme) {
         DarkColorPalette
+
     } else {
         LightColorPalette
     }
@@ -50,3 +52,4 @@ fun UnitedStatesTaxAppJetpackComposeTheme(
         content = content
     )
 }
+

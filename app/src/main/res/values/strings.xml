@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">United States Tax Calculator</string>
+    <string name="title_activity_united_states_details">UnitedStatesDetails</string>
 </resources>
